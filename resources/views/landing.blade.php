@@ -37,7 +37,7 @@
         <div class="container d-flex align-items-center justify-content-between py-3">
             <div class="d-flex align-items-center">
                 <div class="me-3" style="font-weight:700;letter-spacing:1px;">
-                    <img src="/images/landing/logo.png" alt="logo" style="height:40px;vertical-align:middle;" />
+                        <img src="{{ asset('images/landing/logo.png') }}" alt="logo" style="height:40px;vertical-align:middle;" />
                 </div>
                 <nav class="d-none d-md-block">
                     <a class="me-3" href="#">Equipo</a>
@@ -58,12 +58,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 text-start">
-                    <h1 class="display-4 fw-bold">Lorem ipsum<br><small class="fs-4 text-white-50">dolor sit amet</small></h1>
+                    <h1 class="display-4 fw-bold">Abogados Salvatier<br><small class="fs-4 text-white-50">dolor sit amet</small></h1>
                     <p class="lead text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue ligula, posuere sit amet felis vel, pellentesque auctor magna. Maecenas aliquam blandit eros, in aliquet ligula placerat id.</p>
                     <a href="#equipo" class="btn" style="background:var(--gold);color:#222;">Conoce al equipo</a>
                 </div>
                 <div class="col-lg-6 text-end">
-                    <img class="card-img" src="https://images.unsplash.com/photo-1549893073-4f8f3d3e9f3f?auto=format&fit=crop&w=1000&q=80" alt="justicia">
+                        <img class="card-img" src="{{ asset('images/landing/hero-right.webp') }}" alt="justicia">
                 </div>
             </div>
         </div>
