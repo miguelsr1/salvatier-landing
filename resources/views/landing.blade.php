@@ -17,7 +17,7 @@
         }
         .topbar a{color:white;text-decoration:none}
         .hero{
-            background:linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+            background:linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset("images/landing/banner-landing.webp") }}') center/cover no-repeat;
             color: #fff;
             padding: 5rem 0;
         }
@@ -37,7 +37,7 @@
         <div class="container d-flex align-items-center justify-content-between py-3">
             <div class="d-flex align-items-center">
                 <div class="me-3" style="font-weight:700;letter-spacing:1px;">
-                    <img src="https://via.placeholder.com/140x40?text=SALVATIER" alt="logo">
+                    <img src="/images/landing/logo.png" alt="logo" style="height:40px;vertical-align:middle;" />
                 </div>
                 <nav class="d-none d-md-block">
                     <a class="me-3" href="#">Equipo</a>
