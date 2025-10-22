@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Landing - {{ config('app.name', 'Laravel') }}</title>
-    <link rel="shortcut icon" href="{{ asset("images/landing/logo-icon.png") }}" sizes="192x192" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <style>
@@ -28,7 +27,16 @@
             max-width:100%;
             box-shadow:0 6px 20px rgba(0,0,0,0.5);
         }
-        .section-team{background:var(--muted);padding:4rem 0;border-top:6px solid var(--gold)}
+        .section-team{
+            background: linear-gradient(to bottom, var(--muted) 50%, white 50%);
+            padding:4rem 0;
+            border-top:6px solid var(--gold)
+        }
+        .section-mision-vision{
+            background:linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('{{ asset("images/landing/mision-vision.webp") }}') center/cover no-repeat;
+            display: flex;
+            min-height: 100vh;
+        }
         .team-card{border-radius:1rem;padding:1.5rem;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
         .team-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
         /* Swiper custom controls */
@@ -36,6 +44,131 @@
             width:44px;height:44px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);color:#333
         }
         .swiper-button-custom:hover{background:#ccc}
+
+
+        .image-container {
+            flex: 0 0 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+        .content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            gap: 3rem;
+        }
+         .content-box {
+            background: rgba(45, 85, 80, 0.8);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-box h2 {
+            color: #d4af77;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .content-box p {
+            color: #f5f5f5;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+             /* Responsive Design */
+        @media (max-width: 1024px) {
+            .mission-section {
+                flex-direction: column;
+                background: linear-gradient(to bottom, #1a1410 0%, #1a1410 40%, #2d5550 40%, #2d5550 100%);
+            }
+
+            .image-container {
+                flex: 0 0 auto;
+                min-height: 50vh;
+            }
+
+            .content-container {
+                padding: 3rem 2rem;
+            }
+
+            .content-box h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .content-box {
+                padding: 2rem;
+            }
+
+            .content-box h2 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .content-box p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .image-container {
+                min-height: 40vh;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+             .hero{
+                background: #01241e;
+             }
+            .content-container {
+                padding: 1.5rem 1rem;
+                gap: 1.5rem;
+            }
+
+            .content-box {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .content-box h2 {
+                font-size: 1.75rem;
+                letter-spacing: 1px;
+            }
+
+            .content-box p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+            }
+
+            .image-container {
+                min-height: 35vh;
+                padding: 1rem;
+            }
+            .hero .card-img{
+                border-radius: 0;
+                max-width:100%;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -103,6 +236,22 @@
                     <div class="swiper-button-prev swiper-button-custom" aria-label="Anterior"></div>
                     <div class="swiper-button-next swiper-button-custom" aria-label="Siguiente"></div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mision_vision" class="section-mision-vision">
+        <div class="image-container">
+        </div>
+        <div class="content-container">
+            <div class="content-box">
+                <h2>Mision</h2>
+                <p>{{ $mision }}</p>
+
+                <br/><br/>
+
+                <h2>Valores</h2>
+                <p>{{ $vision }}</p>
             </div>
         </div>
     </section>

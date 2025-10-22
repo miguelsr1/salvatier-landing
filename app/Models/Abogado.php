@@ -44,49 +44,49 @@ class Abogado
                 1,
                 'Lic. Moisés Guzman',
                 'Especialista en Derecho Penal y Corporativo',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/men/32.jpg'
             ),
             new self(
                 2,
                 'Lic. Juan Carlos Ríos',
                 'Especialista en Derecho notarial, Penal, civil y Corporativo',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/men/45.jpg'
             ),
             new self(
                 3,
                 'Lic. Samuel Contreras',
                 'Especialista en Derecho Penal y Procesos Ejecutivos',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/women/65.jpg'
             ),
             new self(
                 4,
                 'Lic. Francisco Maravilla',
                 'Especialista en Derecho Penal, Derecho de familia y Laboral',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/women/65.jpg'
             ),
             new self(
                 5,
                 'Licda. Karina de Melara',
                 'Especialista en Derecho Penal, Derecho de familia',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/women/65.jpg'
             ),
             new self(
                 6,
                 'Licda. Sindi Canales',
                 'Especialista en Derecho Penal',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/women/65.jpg'
             ),
             new self(
                 7,
                 'Licda. Wendi Galicia',
                 'Especialista en Derecho Penal',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/women/65.jpg'
             ),
             new self(
                 8,
                 'Licda. Josselyn Ríos',
                 'Especialista en Derecho Penal',
-                '/images/landing/user.png'
+                'https://randomuser.me/api/portraits/women/65.jpg'
             ),
         ];
     }
