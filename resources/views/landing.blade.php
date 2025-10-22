@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Landing - {{ config('app.name', 'Laravel') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <style>
         :root{
             --green:#066c57;
@@ -29,6 +30,11 @@
         .section-team{background:var(--muted);padding:4rem 0;border-top:6px solid var(--gold)}
         .team-card{border-radius:1rem;padding:1.5rem;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
         .team-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+        /* Swiper custom controls */
+        .swiper-button-custom{
+            width:44px;height:44px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);color:#333
+        }
+        .swiper-button-custom:hover{background:#ccc}
     </style>
 </head>
 <body>
@@ -75,17 +81,27 @@
                 <p class="text-muted">{{ $equipoDesc }}</p>
             </div>
 
-            <div class="row g-4 justify-content-center">
-                @foreach($abogados as $abogado)
-                <div class="col-md-4">
-                    <div class="team-card text-center">
-                        <img class="team-avatar mx-auto d-block mb-3" src="{{ $abogado->getFoto() }}" alt="{{ $abogado->getNombre() }}">
-                        <h5 class="fw-bold">{{ $abogado->getNombre() }}</h5>
-                        <p class="text-muted small">{{ $abogado->getEspecialidad() }}</p>
-                        <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer más</a>
+            <div>
+                <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach($abogados as $abogado)
+                        <div class="swiper-slide">
+                            <div class="team-card text-center mx-2">
+                                <img class="team-avatar mx-auto d-block mb-3" src="{{ $abogado->getFoto() }}" alt="{{ $abogado->getNombre() }}">
+                                <h5 class="fw-bold">{{ $abogado->getNombre() }}</h5>
+                                <p class="text-muted small">{{ $abogado->getEspecialidad() }}</p>
+                                <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer más</a>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination mt-3"></div>
+                    <!-- Custom Navigation -->
+                    <div class="swiper-button-prev swiper-button-custom" aria-label="Anterior"></div>
+                    <div class="swiper-button-next swiper-button-custom" aria-label="Siguiente"></div>
                 </div>
-                @endforeach
             </div>
         </div>
     </section>
@@ -95,5 +111,24 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.mySwiper', {
+            loop: true,
+            spaceBetween: 24,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 3 }
+            }
+        });
+    </script>
 </body>
 </html>
