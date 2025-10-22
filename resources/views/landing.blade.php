@@ -36,7 +36,7 @@
     <header class="topbar">
         <div class="container d-flex align-items-center justify-content-between py-3">
             <div class="d-flex align-items-center">
-                <div class="me-3" style="font-weight:700;letter-spacing:1px;">
+                <div class="me-5" style="font-weight:700;letter-spacing:1px;">
                         <img src="{{ asset('images/landing/logo.png') }}" alt="logo" style="height:40px;vertical-align:middle;" />
                 </div>
                 <nav class="d-none d-md-block">
@@ -58,9 +58,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 text-start">
-                    <h1 class="display-4 fw-bold">Abogados Salvatier<br><small class="fs-4 text-white-50">dolor sit amet</small></h1>
-                    <p class="lead text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue ligula, posuere sit amet felis vel, pellentesque auctor magna. Maecenas aliquam blandit eros, in aliquet ligula placerat id.</p>
-                    <a href="#equipo" class="btn" style="background:var(--gold);color:#222;">Conoce al equipo</a>
+                    <h1 class="display-4 fw-bold" style="color: #C8AE80">{{ $nombreEmpresa }}</h1>
+                    <p class="lead text-white-50">{{ $descripcion }}</p>
                 </div>
                 <div class="col-lg-6 text-end">
                         <img class="card-img" src="{{ asset('images/landing/hero-right.webp') }}" alt="justicia">
@@ -72,37 +71,21 @@
     <section id="equipo" class="section-team">
         <div class="container">
             <div class="text-center mb-4">
-                <h2 class="fw-bold">Equipo jurídico</h2>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue ligula, posuere sit amet felis vel, pellentesque auctor magna.</p>
+                <h2 class="fw-bold">{{ $equipoTitle }}</h2>
+                <p class="text-muted">{{ $equipoDesc }}</p>
             </div>
 
             <div class="row g-4 justify-content-center">
+                @foreach($abogados as $abogado)
                 <div class="col-md-4">
                     <div class="team-card text-center">
-                        <img class="team-avatar mx-auto d-block mb-3" src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar">
-                        <h5 class="fw-bold">Lorem ipsum</h5>
-                        <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue ligula.</p>
-                        <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer mas</a>
+                        <img class="team-avatar mx-auto d-block mb-3" src="{{ $abogado->getFoto() }}" alt="{{ $abogado->getNombre() }}">
+                        <h5 class="fw-bold">{{ $abogado->getNombre() }}</h5>
+                        <p class="text-muted small">{{ $abogado->getEspecialidad() }}</p>
+                        <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer más</a>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="team-card text-center">
-                        <img class="team-avatar mx-auto d-block mb-3" src="https://randomuser.me/api/portraits/men/45.jpg" alt="avatar">
-                        <h5 class="fw-bold">Lorem ipsum</h5>
-                        <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue ligula.</p>
-                        <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer mas</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="team-card text-center">
-                        <img class="team-avatar mx-auto d-block mb-3" src="https://randomuser.me/api/portraits/women/65.jpg" alt="avatar">
-                        <h5 class="fw-bold">Lorem ipsum</h5>
-                        <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In augue ligula.</p>
-                        <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer mas</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
