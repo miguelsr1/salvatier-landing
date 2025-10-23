@@ -6,6 +6,7 @@
     <title>Landing - {{ config('app.name', 'Laravel') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/all.min.css">
     <style>
         :root{
             --green:#066c57;
@@ -36,6 +37,9 @@
             background:linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('{{ asset("images/landing/mision-vision.webp") }}') center/cover no-repeat;
             display: flex;
             min-height: 100vh;
+        }
+        .secction-footer{
+            background: #036554;
         }
         .team-card{border-radius:1rem;padding:1.5rem;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
         .team-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
@@ -169,6 +173,181 @@
                 box-shadow: none;
             }
         }
+
+        .footer {
+            background: #036554;
+            padding: 40px 40px 30px;
+            margin-top: auto;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            display: flex;
+            gap: 3px;
+        }
+
+        .line {
+            width: 4px;
+            height: 35px;
+            background-color: white;
+            transform: skewX(-20deg);
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 8px;
+        }
+
+        .logo-subtitle {
+            color: white;
+            font-size: 11px;
+            letter-spacing: 4px;
+            margin-top: -5px;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .contact-item:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-item {
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .social-item:hover {
+            transform: scale(1.15);
+            opacity: 0.9;
+        }
+
+        .social-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .system-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            color: white;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .siguenos-text {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1200px) {
+            .contact-bar {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 30px 20px 20px;
+            }
+
+            .contact-bar {
+                gap: 25px;
+                flex-direction: column;
+            }
+
+            .contact-item {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+                letter-spacing: 6px;
+            }
+
+            .social-links {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 20px;
+                letter-spacing: 4px;
+            }
+
+            .line {
+                width: 3px;
+                height: 28px;
+            }
+
+            .contact-item span {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -255,9 +434,59 @@
             </div>
         </div>
     </section>
+ 
+    <footer class="footer">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="{{ asset('images/landing/logo.png') }}" alt="logo" style="vertical-align:middle;" />
+            </div>
+        </div>
 
-    <footer class="py-4 text-center">
-        <div class="container">&copy; {{ date('Y') }} {{ config('app.name', 'Laravel') }}</div>
+        <div class="divider"></div>
+
+        <nav class="contact-bar">
+            <a href="mailto:despachojuridico@gmail.com" class="contact-item">
+                <i class="fa fa-thin fa fa-envelope"></i>
+                <span>despachojuridico@gmail.com</span>
+            </a>
+
+            <a href="tel:12305-6529" class="contact-item">
+                <i class="fa fa-thin fa fa-phone"></i>
+                <span>12305-6529</span>
+            </a>
+
+            <a href="https://wa.me/1230565299" class="contact-item" target="_blank">
+                <i class="fa fa-brands fa fa-whatsapp"></i>
+                <span>12305-6529</span>
+            </a>
+
+            <div class="contact-item">
+                <i class="fa fa-thin fa fa-map-location-dot"></i>
+                <div class="system-info">
+                    <span>Opera/8.69 [X11; Linux i686; sl-SI]</span>
+                    <span>Presto/2.10.204 Version/12.00</span>
+                </div>
+            </div>
+
+            <div class="siguenos-text">
+                Síguenos
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-item" aria-label="Instagram" target="_blank">
+                    <i class="fa fa-brands fa fa-instagram"></i>
+                </a>
+                <a href="#" class="social-item" aria-label="Twitter" target="_blank">
+                    <i class="fa fa-brands fa fa-twitter"></i>
+                </a>
+                <a href="#" class="social-item" aria-label="Facebook" target="_blank">
+                    <i class="fa fa-brands fa fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-item" aria-label="YouTube" target="_blank">
+                    <i class="fa fa-brands fa fa-youtube"></i>
+                </a>
+            </div>
+        </nav>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
