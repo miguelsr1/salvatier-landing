@@ -623,6 +623,12 @@
         const serviciosSwiper = new Swiper('.serviciosSwiper', {
             loop: true,
             spaceBetween: 24,
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            grid: {
+                rows: 1,
+                fill: 'row'
+            },
             pagination: {
                 el: '.serviciosSwiper .swiper-pagination',
                 clickable: true,
@@ -632,9 +638,30 @@
                 prevEl: '.serviciosSwiper .swiper-button-prev',
             },
             breakpoints: {
-                0: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
+                0: { 
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                    grid: {
+                        rows: 1,
+                        fill: 'row'
+                    }
+                },
+                768: { 
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                    grid: {
+                        rows: 1,
+                        fill: 'row'
+                    }
+                },
+                1024: { 
+                    slidesPerView: 3,
+                    slidesPerGroup: 6,
+                    grid: {
+                        rows: 2,
+                        fill: 'row'
+                    }
+                }
             }
         });
 
