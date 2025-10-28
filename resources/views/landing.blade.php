@@ -49,6 +49,55 @@
         }
         .swiper-button-custom:hover{background:#ccc}
 
+        /* Sección Servicios */
+        .section-servicios{
+            background: var(--muted);
+            padding: 5rem 0;
+        }
+        .servicio-card{
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+        .servicio-card h5{
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .servicio-card p{
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .leer-mas{
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .leer-mas:hover{
+            text-decoration: underline;
+        }
+        .btn-agendar{
+            background: var(--green);
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            padding: 0.6rem 2.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-self: flex-start;
+        }
+        .btn-agendar:hover{
+            background: #055446;
+            transform: translateY(-2px);
+        }
+
 
         .image-container {
             flex: 0 0 40%;
@@ -431,6 +480,27 @@
 
                 <h2>Valores</h2>
                 <p>{{ $vision }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="section-servicios">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Servicios <span style="color: var(--green)">jurídicos</span></h2>
+                <p class="text-muted">Ofrecemos una amplia gama de servicios jurídicos adaptados a las necesidades de nuestros clientes.</p>
+            </div>
+
+            <div class="row g-4">
+                @foreach($serviciosJuridicos as $servicioJuridico)
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="servicio-card">
+                        <h5 class="fw-bold">{{ $servicioJuridico->getNombre() }}</h5>
+                        <p class="text-muted">{{ $servicioJuridico->getDescripcion() }}</p>
+                        <button class="btn-agendar">Agendar</button>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </section>
