@@ -518,18 +518,28 @@
                 <p class="text-muted">Ofrecemos una amplia gama de servicios jurídicos adaptados a las necesidades de nuestros clientes.</p>
             </div>
 
-            <div class="row g-4">
-                @foreach($serviciosJuridicos as $servicioJuridico)
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="servicio-card">
-                        <h5 class="fw-bold">{{ $servicioJuridico->getNombre() }}</h5>
-                        <div class="servicio-descripcion collapsed">
-                        {!! $servicioJuridico->getDescripcion() !!}
+            <div>
+                <!-- Swiper Servicios -->
+                <div class="swiper serviciosSwiper">
+                    <div class="swiper-wrapper">
+                        @foreach($serviciosJuridicos as $servicioJuridico)
+                        <div class="swiper-slide">
+                            <div class="servicio-card mx-2">
+                                <h5 class="fw-bold">{{ $servicioJuridico->getNombre() }}</h5>
+                                <div class="servicio-descripcion collapsed">
+                                {!! $servicioJuridico->getDescripcion() !!}
+                                </div>
+                                <a class="toggle-descripcion" onclick="toggleDescripcion(this)">Leer más</a>
+                            </div>
                         </div>
-                        <a class="toggle-descripcion" onclick="toggleDescripcion(this)">Leer más</a>
+                        @endforeach
                     </div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination mt-3"></div>
+                    <!-- Custom Navigation -->
+                    <div class="swiper-button-prev swiper-button-custom" aria-label="Anterior"></div>
+                    <div class="swiper-button-next swiper-button-custom" aria-label="Siguiente"></div>
                 </div>
-                @endforeach
             </div>
         </div>
     </section>
@@ -591,6 +601,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
+        // Swiper para equipo
         const swiper = new Swiper('.mySwiper', {
             loop: true,
             spaceBetween: 24,
@@ -605,6 +616,25 @@
             breakpoints: {
                 0: { slidesPerView: 1 },
                 768: { slidesPerView: 3 }
+            }
+        });
+
+        // Swiper para servicios jurídicos
+        const serviciosSwiper = new Swiper('.serviciosSwiper', {
+            loop: true,
+            spaceBetween: 24,
+            pagination: {
+                el: '.serviciosSwiper .swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.serviciosSwiper .swiper-button-next',
+                prevEl: '.serviciosSwiper .swiper-button-prev',
+            },
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
             }
         });
 
