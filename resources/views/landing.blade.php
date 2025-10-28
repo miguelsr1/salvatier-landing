@@ -42,7 +42,7 @@
             background: #036554;
         }
         .team-card{border-radius:1rem;padding:1.5rem;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-        .team-avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+        .team-avatar{width:150px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
         /* Swiper custom controls */
         .swiper-button-custom{
             width:44px;height:44px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);color:#333
@@ -359,12 +359,12 @@
                         <img src="{{ asset('images/landing/logo.png') }}" alt="logo" style="height:40px;vertical-align:middle;" />
                 </div>
                 <nav class="d-none d-md-block">
-                    <a class="me-3" href="#">Equipo</a>
-                    <a class="me-3" href="#">Misión y valores</a>
-                    <a class="me-3" href="#">Servicios</a>
-                    <a class="me-3" href="#">Comentarios</a>
-                    <a class="me-3" href="#">FAQ</a>
-                    <a class="me-3" href="#">Ubicación</a>
+                    <a class="me-3" href="#team">Equipo</a>
+                    <a class="me-3" href="#mision_vision">Misión y valores</a>
+                    <a class="me-3" href="#servicios">Servicios</a>
+                    <a class="me-3" href="#comentarios">Comentarios</a>
+                    <a class="me-3" href="#faq">FAQ</a>
+                    <a class="me-3" href="#ubicacion">Ubicación</a>
                 </nav>
             </div>
             <div>
@@ -387,7 +387,7 @@
         </div>
     </section>
 
-    <section id="equipo" class="section-team">
+    <section id="team" class="section-team">
         <div class="container">
             <div class="text-center mb-4">
                 <h2 class="fw-bold">{{ $equipoTitle }}</h2>
@@ -401,10 +401,10 @@
                         @foreach($abogados as $abogado)
                         <div class="swiper-slide">
                             <div class="team-card text-center mx-2">
-                                <img class="team-avatar mx-auto d-block mb-3" src="{{ $abogado->getFoto() }}" alt="{{ $abogado->getNombre() }}">
+                                <img class="team-avatar mx-auto d-block mb-3" src="{{ asset($abogado->getFoto()) }}" alt="{{ $abogado->getNombre() }}">
                                 <h5 class="fw-bold">{{ $abogado->getNombre() }}</h5>
                                 <p class="text-muted small">{{ $abogado->getEspecialidad() }}</p>
-                                <a href="#" class="btn btn-sm" style="background:var(--green);color:#fff">Leer más</a>
+                                
                             </div>
                         </div>
                         @endforeach
