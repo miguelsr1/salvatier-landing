@@ -126,6 +126,49 @@
             transform: translateY(-2px);
         }
 
+        /* Sección Preguntas frecuentes */
+        .section-faq{
+            background: #fff;
+            padding: 2rem 0;
+        }
+        .faq-image{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .faq-card{
+            background: var(--muted);
+            border-radius: 20px;
+            padding: 2rem 2rem;
+        }
+        .faq-title{
+            font-weight: 800;
+            font-size: 2.25rem;
+            line-height: 1.1;
+            color: #3a3a3a;
+        }
+        .faq-title span{ color: var(--green); }
+        .faq-item{ display:flex; gap:1rem; align-items:flex-start; }
+        .faq-number{
+            font-weight: 800;
+            font-size: 2rem;
+            color: #3a3a3a;
+            line-height: 1;
+            flex: 0 0 auto;
+        }
+        .faq-question{ font-weight: 700; font-size: .95rem; color:#2d2d2d; margin-bottom:.25rem }
+        .faq-answer{ color:#6c757d; font-size:.95rem }
+
+        @media (max-width: 992px){
+            .faq-card{ padding: 1.5rem; }
+        }
+        @media (max-width: 768px){
+            .section-faq{ padding: 3rem 0; }
+            .faq-image{ max-height: 360px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+            .faq-card{ border-top-left-radius: 20px; border-top-right-radius: 20px; margin-top: -1.25rem; }
+            .faq-title{ font-size: 1.8rem; }
+        }
+
 
         .image-container {
             flex: 0 0 40%;
@@ -427,7 +470,7 @@
         }
     </style>
 </head>
-<body>
+<body style="max-width: 90vw; overflow-x: hidden; margin: auto;">
 
     <header class="topbar">
         <div class="container d-flex align-items-center justify-content-between py-3">
@@ -543,6 +586,34 @@
             </div>
         </div>
     </section>
+
+    <section id="faq" class="section-faq">
+        <div class="container">
+            <div class="row g-4 align-items-stretch">
+                <div class="col-12 col-lg-7">
+                    <img class="faq-image" src="{{ asset('images/landing/faq.webp') }}" alt="Atención legal" />
+                </div>
+                <div class="col-12 col-lg-5 d-flex">
+                    <div class="faq-card w-100 d-flex flex-column">
+                        <h3 class="faq-title mb-4">Preguntas <br><span>frecuentes</span></h3>
+
+                        <div class="d-flex flex-column gap-4">
+                            @foreach($faqs as $faq)
+                            <div class="faq-item">
+                                <div class="faq-number">{{ $loop->iteration }}</div>
+                                <div>
+                                    <div class="faq-question">{{ $faq->getPregunta() }}</div>
+                                    <div class="faq-answer">{!! $faq->getRespuesta() !!}</div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
  
     <footer class="footer">
         <div class="logo-container">
