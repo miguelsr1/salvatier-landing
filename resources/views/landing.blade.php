@@ -58,21 +58,49 @@
             background: white;
             border-radius: 1rem;
             padding: 2rem;
-            height: 100%;
+            min-height: 200px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
+            transition: min-height 0.3s ease;
+        }
+        .servicio-card.expanded{
+            min-height: auto;
         }
         .servicio-card h5{
             color: #333;
             font-size: 1.1rem;
             margin-bottom: 1rem;
         }
-        .servicio-card p{
+        .servicio-descripcion{
             flex: 1;
             font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .servicio-descripcion.collapsed{
+            max-height: 60px;
+        }
+        .servicio-descripcion.expanded{
+            max-height: none;
+        }
+        .servicio-card p{
+            color: #6c757d;
+            margin: 0;
+        }
+        .toggle-descripcion{
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .toggle-descripcion:hover{
+            text-decoration: underline;
         }
         .leer-mas{
             color: var(--green);
@@ -453,7 +481,6 @@
                                 <img class="team-avatar mx-auto d-block mb-3" src="{{ asset($abogado->getFoto()) }}" alt="{{ $abogado->getNombre() }}">
                                 <h5 class="fw-bold">{{ $abogado->getNombre() }}</h5>
                                 <p class="text-muted small">{{ $abogado->getEspecialidad() }}</p>
-                                
                             </div>
                         </div>
                         @endforeach
@@ -496,8 +523,10 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="servicio-card">
                         <h5 class="fw-bold">{{ $servicioJuridico->getNombre() }}</h5>
-                        <p class="text-muted">{{ $servicioJuridico->getDescripcion() }}</p>
-                        <button class="btn-agendar">Agendar</button>
+                        <div class="servicio-descripcion collapsed">
+                        {!! $servicioJuridico->getDescripcion() !!}
+                        </div>
+                        <a class="toggle-descripcion" onclick="toggleDescripcion(this)">Leer más</a>
                     </div>
                 </div>
                 @endforeach
@@ -578,6 +607,24 @@
                 768: { slidesPerView: 3 }
             }
         });
+
+        // Función para expandir/contraer descripción de servicios
+        function toggleDescripcion(element) {
+            const card = element.closest('.servicio-card');
+            const descripcion = card.querySelector('.servicio-descripcion');
+            
+            if (descripcion.classList.contains('collapsed')) {
+                descripcion.classList.remove('collapsed');
+                descripcion.classList.add('expanded');
+                card.classList.add('expanded');
+                element.textContent = 'Leer menos';
+            } else {
+                descripcion.classList.remove('expanded');
+                descripcion.classList.add('collapsed');
+                card.classList.remove('expanded');
+                element.textContent = 'Leer más';
+            }
+        }
     </script>
 </body>
 </html>
