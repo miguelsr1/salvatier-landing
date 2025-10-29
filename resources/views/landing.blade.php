@@ -30,7 +30,7 @@
         }
         .section-team{
             background: linear-gradient(to bottom, var(--muted) 50%, white 50%);
-            padding:4rem 0;
+            padding: 1rem 0;
             border-top:6px solid var(--gold)
         }
         .section-mision-vision{
@@ -52,7 +52,7 @@
         /* Sección Servicios */
         .section-servicios{
             background: var(--muted);
-            padding: 5rem 0;
+            padding: 1rem 0;
         }
         .servicio-card{
             background: white;
@@ -129,7 +129,7 @@
         /* Sección Preguntas frecuentes */
         .section-faq{
             background: #fff;
-            padding: 2rem 0;
+            padding: 1rem 0;
         }
         .faq-image{
             width: 100%;
@@ -167,6 +167,16 @@
             .faq-image{ max-height: 360px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
             .faq-card{ border-top-left-radius: 20px; border-top-right-radius: 20px; margin-top: -1.25rem; }
             .faq-title{ font-size: 1.8rem; }
+        }
+
+        /* Sección Mapa */
+        .section-mapa{
+            background: #E6F5F0;
+            padding: 1rem 0;
+        }
+        #map{
+            width: 100vw%;
+            height: 420px;
         }
 
 
@@ -470,7 +480,7 @@
         }
     </style>
 </head>
-<body style="max-width: 90vw; overflow-x: hidden; margin: auto;">
+<body style="max-width: 90vw; overflow-x: hidden; margin: auto;background: #01241e">
 
     <header class="topbar">
         <div class="container d-flex align-items-center justify-content-between py-3">
@@ -482,7 +492,6 @@
                     <a class="me-3" href="#team">Equipo</a>
                     <a class="me-3" href="#mision_vision">Misión y valores</a>
                     <a class="me-3" href="#servicios">Servicios</a>
-                    <a class="me-3" href="#comentarios">Comentarios</a>
                     <a class="me-3" href="#faq">FAQ</a>
                     <a class="me-3" href="#ubicacion">Ubicación</a>
                 </nav>
@@ -612,6 +621,17 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Mapa de Google con marcadores dinámicos -->
+    <section id="ubicacion" class="section-mapa">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-12">
+                    <h2 class="fw-bold mb-3" style="margin-left: 2rem;">Ubicación</h2>
+                    <p class="text-muted mb-4" style="margin-left: 2rem;">Consulta nuestros puntos de atención.</p>
+                    <div id="map"></div>
+                </div>
+            </div>
     </section>
 
  
@@ -754,5 +774,50 @@
             }
         }
     </script>
+    
+    <script>
+        // Datos de ubicaciones desde el backend
+        const MAP_LOCATIONS = @json($mapLocations ?? []);
+
+        // Inicialización del mapa para la callback de Google
+        window.initMap = function() {
+            const hasLocations = Array.isArray(MAP_LOCATIONS) && MAP_LOCATIONS.length > 0;
+            const defaultCenter = hasLocations 
+                ? { lat: MAP_LOCATIONS[0].lat, lng: MAP_LOCATIONS[0].lng }
+                : { lat: 13.69294, lng: -89.21819 }; // San Salvador como fallback
+
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultCenter,
+                zoom: hasLocations ? 12 : 5,
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: true,
+            });
+
+            const bounds = new google.maps.LatLngBounds();
+            const infoWindow = new google.maps.InfoWindow();
+
+            (MAP_LOCATIONS || []).forEach(loc => {
+                const position = { lat: Number(loc.lat), lng: Number(loc.lng) };
+                const marker = new google.maps.Marker({
+                    position,
+                    map,
+                    title: loc.title || '',
+                });
+                bounds.extend(position);
+                marker.addListener('click', () => {
+                    infoWindow.setContent(`<div style="min-width:180px"><strong>${loc.title || ''}</strong><br><span style="color:#6c757d">${loc.description || ''}</span></div>`);
+                    infoWindow.open(map, marker);
+                });
+            });
+
+            if (hasLocations && MAP_LOCATIONS.length > 1) {
+                map.fitBounds(bounds);
+            }
+        }
+    </script>
+
+    <!-- Cargar Google Maps JS API: coloca tu clave en .env como GOOGLE_MAPS_API_KEY=... -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google.maps_api_key') }}&callback=initMap"></script>
 </body>
 </html>
